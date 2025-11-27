@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Saya | Landing Page</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        /* Custom Styles */
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            padding: 1rem 0;
+        }
+
+        .navbar-scrolled {
+            background-color: white;
+            padding: 0.75rem 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary) !important;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            margin: 0 0.5rem;
+            color: var(--dark) !important;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary) !important;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            border-radius: 50px;
+            padding: 0.75rem 2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.4);
+        }
+
+        /* Hero Section */
+        #hero {
+            background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+            color: white;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-img {
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 5px solid rgba(255,255,255,0.2);
+        }
+
+        .typing-text {
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-weight: 700;
+            color: var(--dark);
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #6c757d;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 1rem auto 0;
+        }
+
+        /* About Section */
+        .about-content {
+            padding-left: 2rem;
+        }
+
+        .skill-badge {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 50px;
+            padding: 0.5rem 1.5rem;
+            margin: 0.5rem;
+            font-weight: 500;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-badge:hover {
+            transform: scale(1.05);
+        }
+
+        /* Services Section */
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(67, 97, 238, 0.2);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 2rem;
+        }
+
+        /* Portfolio Section */
+        .portfolio-filter {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .filter-btn {
+            background: none;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 50px;
+            padding: 0.5rem 2rem;
+            margin: 0.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .portfolio-item {
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            height: 250px;
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(67, 97, 238, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.1);
+        }
+
+        /* Contact Section */
+        .contact-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 0.75rem 1.25rem;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.2rem rgba(67, 97, 238, 0.25);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 0.5rem;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        .animated {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .animated.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            #hero {
+                text-align: center;
+            }
+            .hero-content .text-start {
+                text-align: center !important;
+            }
+            .about-content {
+                padding-left: 0;
+                margin-top: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-person-circle me-2"></i>Portofolio
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#hero">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">Tentang</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Layanan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#portfolio">Portofolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Kontak</a>
+                    </li>
+                </ul>
+                <button class="btn btn-primary ms-lg-3">Download CV</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="position-relative">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1 class="display-4 fw-bold mb-4">Halo, Saya <span class="text-white">John Doe</span></h1>
+                    <p class="lead mb-4">Saya seorang <span class="typing-text" id="typing-text">Web Developer</span></p>
+                    <p class="mb-4">Saya menciptakan pengalaman digital yang luar biasa dengan fokus pada desain yang bersih, kode yang efisien, dan kepuasan pengguna.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <button class="btn btn-light btn-lg px-4">Lihat Portofolio</button>
+                        <button class="btn btn-outline-light btn-lg px-4">Hubungi Saya</button>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center mt-5 mt-lg-0">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=500&q=80" alt="Profile" class="hero-img img-fluid">
+                </div>
+            </div>
+        </div>
+        <svg class="hero-wave" viewBox="0 0 1440 100" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#ffffff" fill-opacity="1" d="M0,64L48,64C96,64,192,64,288,74.7C384,85,480,107,576,106.7C672,107,768,85,864,85.3C960,85,1056,107,1152,106.7C1248,107,1344,85,1392,74.7L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Tentang Saya</h2>
+                <p>Kenali lebih dalam tentang saya, pengalaman, dan keahlian yang saya miliki</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600&q=80" alt="About" class="img-fluid rounded-4 shadow">
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-content">
+                        <h3 class="mb-4">Web Developer & UI/UX Designer</h3>
+                        <p class="mb-4">Saya adalah seorang profesional IT dengan pengalaman lebih dari 5 tahun dalam pengembangan web dan desain antarmuka pengguna. Saya memiliki keahlian dalam menciptakan solusi digital yang inovatif dan user-friendly.</p>
+                        <p class="mb-4">Saya percaya bahwa teknologi harus mempermudah kehidupan, bukan mempersulit. Setiap proyek yang saya kerjakan selalu mempertimbangkan pengalaman pengguna dan kualitas kode.</p>
+                        <h4 class="mb-3">Keahlian Utama:</h4>
+                        <div class="d-flex flex-wrap">
+                            <span class="skill-badge">HTML5 & CSS3</span>
+                            <span class="skill-badge">JavaScript</span>
+                            <span class="skill-badge">React.js</span>
+                            <span class="skill-badge">Node.js</span>
+                            <span class="skill-badge">UI/UX Design</span>
+                            <span class="skill-badge">Responsive Design</span>
+                        </div>
+                        <div class="mt-4">
+                            <a href="#" class="btn btn-primary">Lihat Resume Lengkap</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Layanan Saya</h2>
+                <p>Layanan profesional yang saya tawarkan untuk membantu bisnis Anda berkembang</p>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-code-slash"></i>
+                        </div>
+                        <h4>Web Development</h4>
+                        <p>Pengembangan website modern dengan teknologi terkini untuk performa optimal dan pengalaman pengguna terbaik.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-palette"></i>
+                        </div>
+                        <h4>UI/UX Design</h4>
+                        <p>Desain antarmuka yang intuitif dan pengalaman pengguna yang menyenangkan untuk meningkatkan konversi.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-phone"></i>
+                        </div>
+                        <h4>Mobile Apps</h4>
+                        <p>Aplikasi mobile cross-platform yang responsif dan performa tinggi untuk iOS dan Android.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-rocket"></i>
+                        </div>
+                        <h4>E-commerce</h4>
+                        <p>Solusi e-commerce lengkap dengan sistem pembayaran, manajemen produk, dan integrasi logistik.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                        <h4>Keamanan Web</h4>
+                        <p>Implementasi keamanan web terbaik untuk melindungi data dan transaksi pengguna.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-graph-up"></i>
+                        </div>
+                        <h4>SEO Optimization</h4>
+                        <p>Optimasi mesin pencari untuk meningkatkan visibilitas dan peringkat website di Google.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="section-title">
+                <h2>Portofolio</h2>
+                <p>Beberapa proyek terbaik yang telah saya kerjakan</p>
+            </div>
+            <div class="portfolio-filter">
+                <button class="filter-btn active" data-filter="all">Semua</button>
+                <button class="filter-btn" data-filter="web">Web Development</button>
+                <button class="filter-btn" data-filter="design">UI/UX Design</button>
+                <button class="filter-btn" data-filter="mobile">Mobile Apps</button>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4" data-category="web">
+                    <div class="portfolio-item">
+                        <img src="https://placehold.co/400x300/4361ee/white?text=E-commerce+Website" alt="Project 1" class="portfolio-img">
+                        <div class="portfolio-overlay">
+                            <h5 class="text-white mb-2">E-commerce Website</h5>
+                            <p class="text-white-50">React, Node.js, MongoDB</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-category="design">
+                    <div class="portfolio-item">
+                        <img src="https://placehold.co/400x300/3a0ca3/white?text=UI+Design" alt="Project 2" class="portfolio-img">
+                        <div class="portfolio-overlay">
+                            <h5 class="text-white mb-2">UI Design</h5>
+                            <p class="text-white-50">Figma, Adobe XD, Prototyping</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-category="mobile">
+                    <div class="portfolio-item">
+                        <img src="https://placehold.co/400x300/4cc9f0/white?text=Mobile+App" alt="Project 3" class="portfolio-img">
+                        <div class="portfolio-overlay">
+                            <h5 class="text-white mb-2">Mobile App</h5>
+                            <p class="text-white-50">React Native, Firebase</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-category="web">
+                    <div class="portfolio-item">
+                        <img src="https://placehold.co/400x300/7209b7/white?text=Corporate+Website" alt="Project 4" class="portfolio-img">
+                        <div class="portfolio-overlay">
+                            <h5 class="text-white mb-2">Corporate Website</h5>
+                            <p class="text-white-50">Vue.js, Laravel, MySQL</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-category="design">
+                    <div class="portfolio-item">
+                        <img src="https://placehold.co/400x300/f72585/white?text=Branding+Design" alt="Project 5" class="portfolio-img">
+                        <div class="portfolio-overlay">
+                            <h5 class="text-white mb-2">Branding Design</h5>
+                            <p class="text-white-50">Logo, Identity, Guidelines</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-category="mobile">
+                    <div class="portfolio-item">
+                        <img src="https://placehold.co/400x300/4895ef/white?text=Health+App" alt="Project 6" class="portfolio-img">
+                        <div class="portfolio-overlay">
+                            <h5 class="text-white mb-2">Health App</h5>
+                            <p class="text-white-50">Flutter, REST API, SQLite</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Hubungi Saya</h2>
+                <p>Mari berdiskusi tentang proyek Anda berikutnya</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" class="form-control" placeholder="Nama Lengkap" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="email" class="form-control" placeholder="Email" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Subjek">
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" rows="5" placeholder="Pesan Anda" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg w-100">Kirim Pesan</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="contact-info p-4">
+                        <h4 class="mb-4">Informasi Kontak</h4>
+                        <div class="mb-4">
+                            <h6><i class="bi bi-geo-alt me-2"></i> Lokasi</h6>
+                            <p>Jakarta, Indonesia</p>
+                        </div>
+                        <div class="mb-4">
+                            <h6><i class="bi bi-envelope me-2"></i> Email</h6>
+                            <p>john.doe@example.com</p>
+                        </div>
+                        <div class="mb-4">
+                            <h6><i class="bi bi-telephone me-2"></i> Telepon</h6>
+                            <p>+62 812-3456-7890</p>
+                        </div>
+                        <div class="social-links">
+                            <h6><i class="bi bi-share me-2"></i> Media Sosial</h6>
+                            <div class="mt-2">
+                                <a href="#" class="social-icon"><i class="bi bi-github"></i></a>
+                                <a href="#" class="social-icon"><i class="bi bi-linkedin"></i></a>
+                                <a href="#" class="social-icon"><i class="bi bi-twitter"></i></a>
+                                <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <h3 class="mb-4"><i class="bi bi-person-circle me-2"></i>Portofolio</h3>
+                    <p class="text-muted">Membangun solusi digital yang inovatif dan user-friendly untuk membantu bisnis Anda berkembang di era digital.</p>
+                </div>
+                <div class="col-md-3 mb-4 mb-md-0">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#hero" class="text-muted">Beranda</a></li>
+                        <li><a href="#about" class="text-muted">Tentang</a></li>
+                        <li><a href="#services" class="text-muted">Layanan</a></li>
+                        <li><a href="#portfolio" class="text-muted">Portofolio</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Newsletter</h5>
+                    <p class="text-muted">Dapatkan update terbaru dari saya</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control form-control-sm" placeholder="Email Anda">
+                        <button class="btn btn-primary btn-sm" type="button">Gabung</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-4 mb-4" style="background: rgba(255,255,255,0.1);">
+            <div class="text-center text-muted">
+                <p>&copy; 2025 Portofolio John Doe. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Typing animation
+        const typingText = document.getElementById('typing-text');
+        const roles = ['Web Developer', 'UI/UX Designer', 'Mobile Developer', 'Frontend Specialist'];
+        let roleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingSpeed = 100;
+        const deletingSpeed = 50;
+        const pauseDuration = 2000;
+
+        function type() {
+            const currentRole = roles[roleIndex];
+            
+            if (isDeleting) {
+                typingText.textContent = currentRole.substring(0, charIndex - 1);
+                charIndex--;
+                
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    roleIndex = (roleIndex + 1) % roles.length;
+                    setTimeout(type, 500);
+                    return;
+                }
+            } else {
+                typingText.textContent = currentRole.substring(0, charIndex + 1);
+                charIndex++;
+                
+                if (charIndex === currentRole.length) {
+                    isDeleting = true;
+                    setTimeout(type, pauseDuration);
+                    return;
+                }
+            }
+            
+            setTimeout(type, isDeleting ? deletingSpeed : typingSpeed);
+        }
+
+        // Start typing animation
+        setTimeout(type, 1000);
+
+        // Portfolio filtering
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const filter = this.getAttribute('data-filter');
+                
+                // Show/hide portfolio items
+                document.querySelectorAll('.portfolio-item').forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Terima kasih! Pesan Anda telah terkirim. Saya akan segera menghubungi Anda.');
+            this.reset();
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('appear');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .portfolio-item, .contact-form').forEach(el => {
+            el.classList.add('animated');
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
+
